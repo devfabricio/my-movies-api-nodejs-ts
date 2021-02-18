@@ -4,7 +4,7 @@ const makeSut = (): CompareFieldsValidator => {
   return new CompareFieldsValidator('field', 'fieldToCompare')
 }
 
-describe('Required Field Validator', () => {
+describe('Compare Fields Validator', () => {
   it('Should return error if the values of the fields are different', () => {
     const sut = makeSut()
     const error = sut.validate({ field: 'any_value', fieldToCompare: 'invalid_value' })
