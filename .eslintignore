@@ -1,0 +1,4 @@
+/*.js
+src/shared/views/*.hbs
+node_modules
+dist
