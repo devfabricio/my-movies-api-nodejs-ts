@@ -1,4 +1,4 @@
-import { CompareFieldsValidator } from '@shared/helpers/validators/compare-fields-validator'
+import { CompareFieldsValidator } from './compare-fields-validator'
 
 const makeSut = (): CompareFieldsValidator => {
   return new CompareFieldsValidator('field', 'fieldToCompare')

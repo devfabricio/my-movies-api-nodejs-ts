@@ -1,3 +1,5 @@
+import { Validator } from './protocols/validator'
+
 export class RequiredFieldValidator implements Validator {
   private readonly fieldName: string
 

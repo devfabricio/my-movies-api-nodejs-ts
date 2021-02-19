@@ -1,4 +1,5 @@
-import { EmailValidation } from '@shared/utils/adapters/protocols/email-validation'
+import { EmailValidation } from '../../utils/adapters/protocols/email-validation'
+import { Validator } from './protocols/validator'
 
 export class EmailValidator implements Validator {
   private readonly fieldName: string

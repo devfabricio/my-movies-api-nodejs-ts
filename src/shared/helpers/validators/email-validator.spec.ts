@@ -1,6 +1,6 @@
-import { EmailValidator } from '@shared/helpers/validators/email-validator'
-import { EmailValidationFake } from '@shared/utils/adapters/fakes/email-validator-fake'
-import { EmailValidation } from '@shared/utils/adapters/protocols/email-validation'
+import { EmailValidator } from './email-validator'
+import { EmailValidationFake } from '../../utils/adapters/fakes/email-validator-fake'
+import { EmailValidation } from '../../utils/adapters/protocols/email-validation'
 
 type makeSutTypes = {
   sut: EmailValidator
