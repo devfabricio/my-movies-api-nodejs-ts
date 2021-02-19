@@ -20,4 +20,10 @@ describe('Email Validator', () => {
     const error = sut.validate({ email: 'invalid_email' })
     expect(error).toEqual(new Error('Invalid param: email'))
   })
+  it('Should calls email validation with correct email', () => {
+    const { sut, emailValidationFake } = makeSut()
+    const isValid = jest.spyOn(emailValidationFake, 'isValid')
+    sut.validate({ email: 'email@email.com' })
+    expect(isValid).toHaveBeenCalledWith('email@email.com')
+  })
 })
