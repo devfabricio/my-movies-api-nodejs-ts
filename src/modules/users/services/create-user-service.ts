@@ -3,9 +3,19 @@ import { Validator } from '../../../shared/helpers/validators/protocols/validato
 import { badRequest, created, serverError } from '../../../shared/helpers/http/http-helper'
 import { getRepository } from 'typeorm'
 import User from '../infra/typeorm/entities/user'
+import { Encrypter } from '../../../shared/utils/adapters/protocols/encrypter'
+
+type UserData = {
+  name: string
+  email: string
+  password: string
+  isAdmin: boolean
+  activation: number
+}
 
 export class CreateUserService {
-  constructor (private readonly validators: Validator) {}
+  constructor (private readonly validators: Validator,
+    private readonly passwordEncrypter: Encrypter) {}
 
   public async execute (request: HttpRequest): Promise<HttpResponse> {
     try {
@@ -19,7 +29,18 @@ export class CreateUserService {
       if (checkIfEmailIsUsed) {
         return badRequest(new Error('Email address already used'))
       }
-      const user = userRepository.create(body)
+      console.log(body)
+      const hashedPassword = await this.passwordEncrypter.encrypt(body.password)
+      console.log(hashedPassword)
+      const userData: UserData = {
+        name: body.name,
+        email: body.email,
+        password: hashedPassword,
+        activation: 1,
+        isAdmin: false
+      }
+      console.log(userData)
+      const user = userRepository.create(userData)
       await userRepository.save(user)
       return created(user)
     } catch (error) {

@@ -7,12 +7,12 @@ import {
 import { Validator } from '../../../../shared/helpers/validators/protocols/validator'
 import { EmailValidationAdapter } from '../../../../shared/utils/adapters/email-validation-adapter'
 
-export const createUserValidator = (): ValidatorComposite => {
+export const makeCreateUserValidator = (): ValidatorComposite => {
   const validators: Validator[] = []
   for (const field of ['name', 'email', 'password', 'passwordConfirmation']) {
     validators.push(new RequiredFieldValidator(field))
   }
   validators.push(new EmailValidator('email', new EmailValidationAdapter()))
-  validators.push(new CompareFieldsValidator('email', 'passwordConfirmation'))
+  validators.push(new CompareFieldsValidator('password', 'passwordConfirmation'))
   return new ValidatorComposite(validators)
 }

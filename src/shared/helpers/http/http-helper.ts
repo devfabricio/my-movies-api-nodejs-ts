@@ -3,17 +3,17 @@ import { ServerError, UnauthorizedError } from '../errors'
 
 export const badRequest = (error: Error): HttpResponse => ({
   statusCode: 400,
-  body: error
+  body: error.message
 })
 
 export const unauthorized = (): HttpResponse => ({
   statusCode: 401,
-  body: new UnauthorizedError()
+  body: new UnauthorizedError().message
 })
 
 export const serverError = (): HttpResponse => ({
   statusCode: 500,
-  body: new ServerError()
+  body: new ServerError().message
 })
 
 export const ok = (body: any): HttpResponse => ({

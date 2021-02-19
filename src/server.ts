@@ -1,11 +1,13 @@
 import express from 'express'
+import routes from './shared/main/routes'
+import cors from 'cors'
 
 const app = express()
 
-app.get('/', (req, res) => {
-  return res.send('Hello Ioasys')
-})
+app.use(cors())
+app.use(express.json())
+app.use(routes)
 
 app.listen(8000, () => {
-  console.log('The app is working! It\'s time to fly, Ioasys! 🚀')
+  console.log('The app is working in port 8000! It\'s time to fly, Ioasys! 🚀')
 })
