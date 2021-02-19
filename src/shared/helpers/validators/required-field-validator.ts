@@ -1,4 +1,5 @@
 import { Validator } from './protocols/validator'
+import { MissingParamError } from '../errors'
 
 export class RequiredFieldValidator implements Validator {
   private readonly fieldName: string
@@ -9,7 +10,7 @@ export class RequiredFieldValidator implements Validator {
 
   validate (body: any): Error {
     if (!body[this.fieldName]) {
-      return new Error(`Missing Param: ${this.fieldName}`)
+      return new MissingParamError(this.fieldName)
     }
   }
 }

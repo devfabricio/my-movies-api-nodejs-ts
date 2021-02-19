@@ -1,6 +1,7 @@
 import { EmailValidator } from './email-validator'
 import { EmailValidationFake } from '../../utils/adapters/fakes/email-validator-fake'
 import { EmailValidation } from '../../utils/adapters/protocols/email-validation'
+import {InvalidParamError} from "../errors";
 
 type makeSutTypes = {
   sut: EmailValidator
@@ -18,7 +19,7 @@ describe('Email Validator', () => {
     const { sut, emailValidationFake } = makeSut()
     jest.spyOn(emailValidationFake, 'isValid').mockReturnValueOnce(false)
     const error = sut.validate({ email: 'invalid_email' })
-    expect(error).toEqual(new Error('Invalid param: email'))
+    expect(error).toEqual(new InvalidParamError('email'))
   })
   it('Should calls email validation with correct email', () => {
     const { sut, emailValidationFake } = makeSut()

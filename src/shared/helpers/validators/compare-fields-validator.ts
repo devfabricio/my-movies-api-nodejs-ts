@@ -1,4 +1,5 @@
 import { Validator } from './protocols/validator'
+import { InvalidParamError } from '../errors'
 
 export class CompareFieldsValidator implements Validator {
   private readonly fieldName: string
@@ -11,7 +12,7 @@ export class CompareFieldsValidator implements Validator {
 
   validate (body: any): Error {
     if (body[this.fieldName] !== body[this.fieldNameToCompare]) {
-      return new Error(`Invalid param ${this.fieldName}`)
+      return new InvalidParamError(this.fieldName)
     }
   }
 }
