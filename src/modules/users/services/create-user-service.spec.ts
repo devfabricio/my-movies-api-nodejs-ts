@@ -2,6 +2,7 @@ import { CreateUserService } from './create-user-service'
 import { Validator } from '../../../shared/helpers/validators/protocols/validator'
 import { ValidatorFake } from '../../../shared/helpers/validators/fakes/validator-fake'
 import { ValidatorComposite } from '../../../shared/helpers/validators'
+import { badRequest } from '../../../shared/helpers/http/http-helper'
 
 type sutTypes = {
   sut: CreateUserService
@@ -31,5 +32,16 @@ describe('Create User', () => {
     }
     await sut.execute({ body })
     expect(validator).toHaveBeenCalledWith({ body })
+  })
+  it('Should returns an error if validator return error', async () => {
+    const { sut , validatorComposite } = makeSut()
+    const body = {
+      email: 'valid_email@mail.com',
+      password: 'valid_password',
+      passwordConfirmation: 'valid_password'
+    }
+    jest.spyOn(validatorComposite, 'validate').mockReturnValueOnce(new Error())
+    const execute = await sut.execute({ body })
+    expect(execute).toEqual(badRequest(new Error()))
   })
 })
