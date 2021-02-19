@@ -1,4 +1,4 @@
-export class RequiredFieldValidator {
+export class RequiredFieldValidator implements Validator {
   private readonly fieldName: string
 
   constructor (fieldName: string) {

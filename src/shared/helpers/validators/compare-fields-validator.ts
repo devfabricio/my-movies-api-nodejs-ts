@@ -1,4 +1,4 @@
-export class CompareFieldsValidator {
+export class CompareFieldsValidator implements Validator {
   private readonly fieldName: string
   private readonly fieldNameToCompare: string
 
