@@ -23,4 +23,11 @@ describe('Validator Composite', () => {
     const error = sut.validate({ field: 'any_field' })
     expect(error).toEqual(new Error())
   })
+  it('Should return the first error if more then one validation fails', () => {
+    const { sut, validatorsFakes } = makeSut()
+    jest.spyOn(validatorsFakes[0], 'validate').mockReturnValueOnce(new Error('Error 1'))
+    jest.spyOn(validatorsFakes[1], 'validate').mockReturnValueOnce(new Error('Error 2'))
+    const error = sut.validate({ field: 'any_field' })
+    expect(error).toEqual(new Error('Error 1'))
+  })
 })
