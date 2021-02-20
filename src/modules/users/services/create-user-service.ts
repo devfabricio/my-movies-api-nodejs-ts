@@ -26,13 +26,10 @@ export class CreateUserService {
       const userRepository = getRepository(User)
       const body = request.body
       const checkIfEmailIsUsed = await userRepository.findOne({ where: { email: body.email } })
-      console.log(checkIfEmailIsUsed)
       if (checkIfEmailIsUsed) {
         return badRequest(new Error('Email address already used'))
       }
-      console.log(body)
       const hashedPassword = await this.passwordEncrypter.encrypt(body.password)
-      console.log(hashedPassword)
       const userData: UserData = {
         name: body.name,
         email: body.email,
@@ -40,7 +37,6 @@ export class CreateUserService {
         activation: 1,
         isAdmin: false
       }
-      console.log(userData)
       const user = userRepository.create(userData)
       await userRepository.save(user)
       return created(user)
