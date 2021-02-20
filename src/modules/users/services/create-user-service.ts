@@ -4,6 +4,7 @@ import { badRequest, created, serverError } from '../../../shared/helpers/http/h
 import { getRepository } from 'typeorm'
 import User from '../infra/typeorm/entities/user'
 import { Encrypter } from '../../../shared/utils/adapters/protocols/encrypter'
+import { ApiService } from '../../../shared/protocols/api-service'
 
 type UserData = {
   name: string
@@ -13,7 +14,7 @@ type UserData = {
   activation: number
 }
 
-export class CreateUserService {
+export class CreateUserService implements ApiService {
   constructor (private readonly validators: Validator,
     private readonly passwordEncrypter: Encrypter) {}
 
