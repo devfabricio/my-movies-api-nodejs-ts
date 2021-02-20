@@ -3,13 +3,14 @@ import {
   CreateDateColumn,
   Entity,
   JoinTable,
-  ManyToMany,
+  ManyToMany, OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm'
 import Genre from './genre'
 import Actor from './actor'
 import Director from './director'
+import Vote from './vote'
 
 @Entity('movie')
 class Movie {
@@ -42,6 +43,9 @@ class Movie {
   @ManyToMany(() => Director)
   @JoinTable()
   directors: Director[]
+
+  @OneToMany(() => Vote, vote => vote.movie)
+  votes: Vote[]
 
   @CreateDateColumn()
   createdAt: Date
