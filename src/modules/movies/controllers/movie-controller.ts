@@ -1,5 +1,5 @@
 import { ApiController } from '../../../shared/protocols/api-controller'
-import { Request, response, Response } from 'express'
+import { Request, Response } from 'express'
 import { makeCreateMovieService } from '../factories/movie/create-movie/make-create-movie-service'
 import ListMovieService from '../services/movie/list-movie-service'
 
@@ -10,9 +10,10 @@ export default class MovieController implements ApiController {
     return response.json(res)
   }
 
-  async index (): Promise<Response> {
+  async index (request: Request, response: Response): Promise<Response> {
     const listMovie = new ListMovieService()
-    const res = await listMovie.execute()
+    const queries = request.query
+    const res = await listMovie.execute({ queries })
     return response.json(res)
   }
 }
