@@ -9,7 +9,7 @@ export class RequiredFieldValidator implements Validator {
   }
 
   validate (body: any): Error {
-    if (!body[this.fieldName]) {
+    if (!body[this.fieldName] && body[this.fieldName] !== 0) {
       return new MissingParamError(this.fieldName)
     }
   }

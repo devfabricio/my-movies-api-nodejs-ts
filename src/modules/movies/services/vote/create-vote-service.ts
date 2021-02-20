@@ -29,24 +29,40 @@ export default class CreateVoteService implements ApiService {
 
       const { rate, movieId, userId } = request.body
 
-      if (rate > 4 && rate < 0 && typeof rate !== 'number') {
+      if (rate > 4 || rate < 0 || typeof rate !== 'number') {
         return badRequest(new InvalidParamError('rate'))
       }
 
       const movie = await movieRepository.findOne(movieId)
       if (!movie) {
-        return badRequest(new InvalidParamError('movie'))
+        return badRequest(new InvalidParamError('movieId'))
       }
 
       const user = await userRepository.findOne(userId)
       if (!user) {
-        return badRequest(new InvalidParamError('user'))
+        return badRequest(new InvalidParamError('userId'))
+      }
+
+      const checkIfUserVoted = await voteRepository.findOne({
+        movie: movie, user: user
+      })
+
+      if (checkIfUserVoted) {
+        return badRequest(new Error('User already voted in this movie'))
       }
 
       const voteData: VoteData = { rate, movie, user }
       const vote = voteRepository.create(voteData)
 
       await voteRepository.save(vote)
+
+      const avgMovieVotes = await voteRepository.createQueryBuilder('vote')
+        .where('vote.movieId = :movieId', { movieId })
+        .select('AVG(vote.rate)', 'average')
+        .getRawOne()
+
+      movie.voteAverage = Number((+avgMovieVotes.average).toFixed(1))
+      await movieRepository.save(movie)
 
       return created(vote)
     } catch (error) {
