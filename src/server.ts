@@ -1,6 +1,7 @@
 import express from 'express'
 import routes from './shared/main/routes'
 import cors from 'cors'
+import './shared/database'
 
 const app = express()
 

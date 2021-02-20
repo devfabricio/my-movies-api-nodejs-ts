@@ -25,7 +25,8 @@ export class CreateUserService {
       }
       const userRepository = getRepository(User)
       const body = request.body
-      const checkIfEmailIsUsed = await userRepository.find({ where: { email: body.email } })
+      const checkIfEmailIsUsed = await userRepository.findOne({ where: { email: body.email } })
+      console.log(checkIfEmailIsUsed)
       if (checkIfEmailIsUsed) {
         return badRequest(new Error('Email address already used'))
       }
@@ -44,6 +45,7 @@ export class CreateUserService {
       await userRepository.save(user)
       return created(user)
     } catch (error) {
+      console.log(error)
       return serverError()
     }
   }
