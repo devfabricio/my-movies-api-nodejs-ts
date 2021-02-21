@@ -12,7 +12,7 @@ export class CompareFieldsValidator implements Validator {
 
   validate (body: any): Error {
     if (body[this.fieldName] !== body[this.fieldNameToCompare]) {
-      return new InvalidParamError(this.fieldName)
+      return new InvalidParamError(this.fieldNameToCompare)
     }
   }
 }

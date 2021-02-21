@@ -1,4 +1,4 @@
-import CreateGenreService from '../../../services/genre/create-genre-service'
+import CreateGenreService from '../../services/genre/create-genre-service'
 import { makeCreateGenreValitator } from './make-create-genre-valitator'
 
 export const makeCreateGenreService = (): CreateGenreService => {
