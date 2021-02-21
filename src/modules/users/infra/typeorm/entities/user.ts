@@ -1,5 +1,6 @@
-import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm'
-import Vote from "../../../../movies/infra/typeorm/entities/vote";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+import Vote from '../../../../movies/infra/typeorm/entities/vote'
+import Role from './role'
 
 @Entity('user')
 class User {
@@ -18,11 +19,11 @@ class User {
   @Column()
   activation: number
 
-  @Column()
-  isAdmin: boolean
-
   @OneToMany(() => Vote, vote => vote.user)
   votes: Vote[]
+
+  @ManyToOne(() => Role, role => role.users)
+  role: Role
 
   @CreateDateColumn()
   createdAt: Date

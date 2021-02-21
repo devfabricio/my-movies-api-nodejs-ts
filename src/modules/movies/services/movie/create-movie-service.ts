@@ -8,6 +8,7 @@ import Genre from '../../infra/typeorm/entities/genre'
 import Actor from '../../infra/typeorm/entities/actor'
 import Director from '../../infra/typeorm/entities/director'
 import User from '../../../users/infra/typeorm/entities/user'
+import { Roles } from '../../../../shared/protocols/api-roles'
 
 type MovieData = {
   title: string
@@ -34,7 +35,11 @@ export default class CreateMovieService implements ApiService {
       const userRepository = getRepository(User)
       const user = await userRepository.findOne(userId)
 
-      if (!user.isAdmin) {
+      if (!user.role) {
+        return unauthorized()
+      }
+
+      if (user.role.name !== Roles.ADMINISTRATOR) {
         return unauthorized()
       }
 

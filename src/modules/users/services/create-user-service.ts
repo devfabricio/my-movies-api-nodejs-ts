@@ -10,7 +10,6 @@ type UserData = {
   name: string
   email: string
   password: string
-  isAdmin: boolean
   activation: number
 }
 
@@ -35,8 +34,7 @@ export class CreateUserService implements ApiService {
         name: body.name,
         email: body.email,
         password: hashedPassword,
-        activation: 1,
-        isAdmin: false
+        activation: 1
       }
       const user = userRepository.create(userData)
       await userRepository.save(user)
