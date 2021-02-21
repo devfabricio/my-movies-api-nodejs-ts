@@ -1,11 +1,13 @@
 import express from 'express'
 import routes from './shared/main/routes'
 import cors from 'cors'
-import './shared/database'
+import './shared/config/database'
+import setupSwagger from './shared/config/swagger'
 import 'dotenv/config'
 
 const app = express()
 
+setupSwagger(app)
 app.use(cors())
 app.use(express.json())
 app.use(routes)
