@@ -2,6 +2,7 @@ import express from 'express'
 import routes from './shared/main/routes'
 import cors from 'cors'
 import './shared/database'
+import 'dotenv/config'
 
 const app = express()
 

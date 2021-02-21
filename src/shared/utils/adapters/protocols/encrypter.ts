@@ -1,3 +1,4 @@
 export interface Encrypter {
-  encrypt(text: string): Promise<string>
+  encrypt(password: string): Promise<string>
+  compare(password: string, hashedPassword: string): Promise<boolean>
 }
