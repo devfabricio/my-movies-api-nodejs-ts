@@ -3,8 +3,8 @@ import { Validator } from '../../../../../shared/helpers/validators/protocols/va
 
 export const makeCreateMovieValitator = (): ValidatorComposite => {
   const validators: Validator[] = []
-  for (const field of ['title', 'overview', 'releaseDate', 'posterPath', 'voteAverage',
-    'genresIds', 'actorsIds', 'directorsIds']) {
+  for (const field of ['title', 'overview', 'releaseDate', 'posterPath',
+    'genresIds', 'actorsIds', 'directorsIds', 'userId']) {
     validators.push(new RequiredFieldValidator(field))
   }
   return new ValidatorComposite(validators)

@@ -1,12 +1,13 @@
 import { ApiService } from '../../../../shared/protocols/api-service'
 import { HttpRequest, HttpResponse } from '../../../../shared/helpers/http/protocols/http'
 import { Validator } from '../../../../shared/helpers/validators/protocols/validator'
-import { badRequest, created, serverError } from '../../../../shared/helpers/http/http-helper'
+import { badRequest, created, serverError, unauthorized } from '../../../../shared/helpers/http/http-helper'
 import { getRepository } from 'typeorm'
 import Movie from '../../infra/typeorm/entities/movie'
 import Genre from '../../infra/typeorm/entities/genre'
 import Actor from '../../infra/typeorm/entities/actor'
 import Director from '../../infra/typeorm/entities/director'
+import User from '../../../users/infra/typeorm/entities/user'
 
 type MovieData = {
   title: string
@@ -28,11 +29,19 @@ export default class CreateMovieService implements ApiService {
       if (error) {
         return badRequest(error)
       }
+      const { title, overview, releaseDate, posterPath, genresIds, actorsIds, directorsIds, userId } = request.body
+
+      const userRepository = getRepository(User)
+      const user = await userRepository.findOne(userId)
+
+      if (!user.isAdmin) {
+        return unauthorized()
+      }
+
       const movieRepository = getRepository(Movie)
       const genreRepository = getRepository(Genre)
       const actorRepository = getRepository(Actor)
       const directorRepository = getRepository(Director)
-      const { title, overview, releaseDate, posterPath, voteAverage, genresIds, actorsIds, directorsIds } = request.body
 
       const genres: Genre[] = []
 
@@ -55,7 +64,7 @@ export default class CreateMovieService implements ApiService {
         directors.push(director)
       }
 
-      const movieData: MovieData = { title, overview, releaseDate, posterPath, voteAverage, genres, actors, directors }
+      const movieData: MovieData = { title, overview, releaseDate, posterPath, voteAverage: 0, genres, actors, directors }
       const movie = movieRepository.create(movieData)
 
       await movieRepository.save(movie)
