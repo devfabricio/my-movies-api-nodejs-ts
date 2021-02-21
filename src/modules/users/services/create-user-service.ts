@@ -10,7 +10,7 @@ type UserData = {
   name: string
   email: string
   password: string
-  activation: number
+  activation: 'active' | 'inactive'
 }
 
 export class CreateUserService implements ApiService {
@@ -34,10 +34,14 @@ export class CreateUserService implements ApiService {
         name: body.name,
         email: body.email,
         password: hashedPassword,
-        activation: 1
+        activation: 'active'
       }
       const user = userRepository.create(userData)
       await userRepository.save(user)
+
+      delete user.password
+      delete user.activation
+
       return created(user)
     } catch (error) {
       console.log(error)

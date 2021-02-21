@@ -33,7 +33,9 @@ export default class CreateMovieService implements ApiService {
       const { title, overview, releaseDate, posterPath, genresIds, actorsIds, directorsIds, userId } = request.body
 
       const userRepository = getRepository(User)
-      const user = await userRepository.findOne(userId)
+      const user = await userRepository.findOne({
+        where: { id: userId }, relations: ['role']
+      })
 
       if (!user.role) {
         return unauthorized()

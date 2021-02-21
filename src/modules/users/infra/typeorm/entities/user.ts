@@ -17,7 +17,7 @@ class User {
   password: string
 
   @Column()
-  activation: number
+  activation: string
 
   @OneToMany(() => Vote, vote => vote.user)
   votes: Vote[]
