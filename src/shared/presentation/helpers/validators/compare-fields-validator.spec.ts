@@ -9,7 +9,7 @@ describe('Compare Fields Validator', () => {
   it('Should return error if the values of the fields are different', () => {
     const sut = makeSut()
     const error = sut.validate({ field: 'any_value', fieldToCompare: 'invalid_value' })
-    expect(error).toEqual(new InvalidParamError('field'))
+    expect(error).toEqual(new InvalidParamError('fieldToCompare'))
   })
 
   it('Should return anything if the values of the fields are equals', () => {
