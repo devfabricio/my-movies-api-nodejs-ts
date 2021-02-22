@@ -6,6 +6,6 @@ export class UserActivationController implements ApiController {
   async update (request: Request, response: Response): Promise<Response> {
     const updateUserActivation = makeUpdateUserActivationService()
     const res = await updateUserActivation.execute({ body: request.body })
-    return response.json(res)
+    return response.status(res.statusCode).json(res)
   }
 }

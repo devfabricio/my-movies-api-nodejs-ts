@@ -7,12 +7,12 @@ export default class ActorController implements ApiController {
   async create (request: Request, response: Response): Promise<Response> {
     const createActor = makeCreateActorService()
     const res = await createActor.execute({ body: request.body })
-    return response.json(res)
+    return response.status(res.statusCode).json(res)
   }
 
   async index (request: Request, response: Response): Promise<Response> {
     const listActor = new ListActorService()
     const res = await listActor.execute()
-    return response.json(res)
+    return response.status(res.statusCode).json(res)
   }
 }

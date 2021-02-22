@@ -4,14 +4,14 @@ import { docResponse } from '../components/doc-response'
 export const actorPath = {
   get: {
     tags: ['Ator'],
-    summary: 'Listar atores cadastrados',
+    summary: 'Listar Atores - Autenticação não é Necessária',
     responses: {
       ...docResponse(200, 'Sucesso', 'idNameArrayBody')
     }
   },
   post: {
     tags: ['Ator'],
-    summary: 'Atores de um Filme',
+    summary: 'Cadastrar Novo Ator - Autenticação Necessária - Permissão para Administradores',
     security: [{
       bearerAuth: []
     }],

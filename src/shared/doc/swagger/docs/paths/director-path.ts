@@ -4,14 +4,14 @@ import { docResponse } from '../components/doc-response'
 export const directorPath = {
   get: {
     tags: ['Diretor'],
-    summary: 'Listar diretores cadastrados',
+    summary: 'Listar Diretores - Autenticação não é Necessária',
     responses: {
       ...docResponse(200, 'Sucesso', 'idNameArrayBody')
     }
   },
   post: {
     tags: ['Diretor'],
-    summary: 'Diretores de um Filme',
+    summary: 'Cadastrar Novo Diretor - Autenticação Necessária - Permissão para Administradores',
     security: [{
       bearerAuth: []
     }],

@@ -7,12 +7,12 @@ export default class GenreController implements ApiController {
   async create (request: Request, response: Response): Promise<Response> {
     const createGenre = makeCreateGenreService()
     const res = await createGenre.execute({ body: request.body })
-    return response.json(res)
+    return response.status(res.statusCode).json(res)
   }
 
   async index (request: Request, response: Response): Promise<Response> {
     const listGenre = new ListGenreService()
     const res = await listGenre.execute()
-    return response.json(res)
+    return response.status(res.statusCode).json(res)
   }
 }

@@ -4,7 +4,7 @@ import { docResponse } from '../components/doc-response'
 export const userPath = {
   post: {
     tags: ['Usuário'],
-    summary: 'Criar novo usuário',
+    summary: 'Cadastrar Novo Usuário - Autenticação não é Necessária',
     requestBody: docRequestBody('createUser'),
     responses: {
       ...docResponse(201, 'Sucesso', 'successfulMessage')
@@ -12,7 +12,7 @@ export const userPath = {
   },
   put: {
     tags: ['Usuário'],
-    summary: 'Editar usuário',
+    summary: 'Editar usuário - Autenticação Necessária',
     security: [{
       bearerAuth: []
     }],

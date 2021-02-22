@@ -4,7 +4,7 @@ import { docResponse } from '../components/doc-response'
 export const votePath = {
   post: {
     tags: ['Voto'],
-    summary: 'Votar em um filme',
+    summary: 'Cadastrar Novo Voto - Autenticação Necessária - Permissão para Usuários Comuns',
     security: [{
       bearerAuth: []
     }],

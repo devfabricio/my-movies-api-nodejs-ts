@@ -7,12 +7,12 @@ export default class DirectorController implements ApiController {
   async create (request: Request, response: Response): Promise<Response> {
     const createDirector = makeCreateDirectorService()
     const res = await createDirector.execute({ body: request.body })
-    return response.json(res)
+    return response.status(res.statusCode).json(res)
   }
 
   async index (request: Request, response: Response): Promise<Response> {
     const listDirector = new ListDirectorService()
     const res = await listDirector.execute()
-    return response.json(res)
+    return response.status(res.statusCode).json(res)
   }
 }

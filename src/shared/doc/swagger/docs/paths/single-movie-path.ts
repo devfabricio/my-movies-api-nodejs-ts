@@ -3,7 +3,7 @@ import { docResponse } from '../components/doc-response'
 export const singleMoviePath = {
   get: {
     tags: ['Filme'],
-    summary: 'Exibir filme individual',
+    summary: 'Exibir Detalhes do Filme - Autenticação não é Necessária',
     parameters: [{
       in: 'path',
       name: 'id',

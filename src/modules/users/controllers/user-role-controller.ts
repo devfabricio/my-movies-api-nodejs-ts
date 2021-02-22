@@ -6,6 +6,6 @@ export class UserRoleController implements ApiController {
   async update (request: Request, response: Response): Promise<Response> {
     const updateUserRole = makeUpdateUserRoleService()
     const res = await updateUserRole.execute({ body: request.body })
-    return response.json(res)
+    return response.status(res.statusCode).json(res)
   }
 }

@@ -1,7 +1,7 @@
 import { ApiService } from '../../../shared/presentation/protocols/api-service'
 import { HttpRequest, HttpResponse } from '../../../shared/presentation/helpers/http/protocols/http'
 import { Validator } from '../../../shared/presentation/helpers/validators/protocols/validator'
-import { badRequest, ok, serverError } from '../../../shared/presentation/helpers/http/http-helper'
+import {badRequest, ok, serverError, updated} from '../../../shared/presentation/helpers/http/http-helper'
 import { getRepository } from 'typeorm'
 import User from '../infra/typeorm/entities/user'
 import { InvalidParamError } from '../../../shared/presentation/helpers/errors'
@@ -29,7 +29,7 @@ export default class UpdateUserActivationService implements ApiService {
 
       user.activation = activation
       await userRepository.save(user)
-      ok(user)
+      return updated('User activation', user.id)
     } catch (error) {
       return serverError()
     }

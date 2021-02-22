@@ -6,6 +6,6 @@ export class AuthenticationController implements ApiController {
   public async create (request: Request, response: Response): Promise<Response> {
     const authentication = makeAuthenticationService()
     const res = await authentication.execute({ body: request.body })
-    return response.json(res)
+    return response.status(res.statusCode).json(res)
   }
 }

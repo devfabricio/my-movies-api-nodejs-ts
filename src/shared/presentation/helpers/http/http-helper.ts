@@ -28,3 +28,11 @@ export const created = (modelName: string, id: string): HttpResponse => ({
     message: `${modelName} created successfully`
   }
 })
+
+export const updated = (modelName: string, id: string): HttpResponse => ({
+  statusCode: 200,
+  body: {
+    id,
+    message: `${modelName} updated successfully`
+  }
+})

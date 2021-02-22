@@ -4,7 +4,7 @@ import { docResponse } from '../components/doc-response'
 export const moviePath = {
   get: {
     tags: ['Filme'],
-    summary: 'Lista de filmes cadastrados',
+    summary: 'Listar filmes - Autenticação não é Necessária',
     parameters: [{
       in: 'query',
       name: 'genre',
@@ -31,7 +31,7 @@ export const moviePath = {
   },
   post: {
     tags: ['Filme'],
-    summary: 'Criação de Filme',
+    summary: 'Cadastrar Novo Filme - Autenticação Necessária - Permissão para Administradores',
     security: [{
       bearerAuth: []
     }],

@@ -8,12 +8,12 @@ export class UserController implements ApiController {
     const createUser = makeCreateUserService()
     const res = await createUser.execute({ body: request.body })
     delete res.body.password
-    return response.json(res)
+    return response.status(res.statusCode).json(res)
   }
 
   async update (request: Request, response: Response): Promise<Response> {
     const updateUser = makeUpdateUserService()
     const res = await updateUser.execute({ body: request.body })
-    return response.json(res)
+    return response.status(res.statusCode).json(res)
   }
 }

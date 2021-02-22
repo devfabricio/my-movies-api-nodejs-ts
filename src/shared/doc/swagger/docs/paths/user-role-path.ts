@@ -4,7 +4,7 @@ import { docResponse } from '../components/doc-response'
 export const userRolePath = {
   put: {
     tags: ['Funções'],
-    summary: 'Alterar função de usuário',
+    summary: 'Alterar Função de Usuário - Autenticação Necessária - Permissão para Administradores',
     security: [{
       bearerAuth: []
     }],

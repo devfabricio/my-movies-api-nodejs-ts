@@ -1,6 +1,6 @@
 import { ApiService } from '../../../shared/presentation/protocols/api-service'
 import { HttpRequest, HttpResponse } from '../../../shared/presentation/helpers/http/protocols/http'
-import { badRequest, ok, serverError } from '../../../shared/presentation/helpers/http/http-helper'
+import {badRequest, ok, serverError, updated} from '../../../shared/presentation/helpers/http/http-helper'
 import { Validator } from '../../../shared/presentation/helpers/validators/protocols/validator'
 import { getRepository } from 'typeorm'
 import User from '../infra/typeorm/entities/user'
@@ -34,8 +34,7 @@ export class UpdateUserRoleService implements ApiService {
       }
 
       await userRepository.save(user)
-      ok(user)
-      return Promise.resolve(undefined)
+      return updated('User role', user.id)
     } catch (error) {
       return serverError()
     }
