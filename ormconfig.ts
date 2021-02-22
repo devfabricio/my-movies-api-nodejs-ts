@@ -14,10 +14,10 @@ export = {
   cli: {
     migrationsDir: './src/shared/database/migrations'
   },
-  ssl: true,
-  extra: {
+  ssl: process.env.APP_ENVIRONMENT === 'prod',
+  extra: process.env.APP_ENVIRONMENT === 'prod' ? {
     ssl: {
       rejectUnauthorized: false
     }
-  }
+  } : null
 }

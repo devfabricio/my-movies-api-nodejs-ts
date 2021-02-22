@@ -12,6 +12,6 @@ app.use(cors())
 app.use(express.json())
 setupRoutes(app)
 
-app.listen(8000, () => {
-  console.log('The app is working in port 8000! It\'s time to fly, Ioasys! 🚀')
+app.listen(process.env.API_PORT, () => {
+  console.log(`The app is working in port ${process.env.API_PORT}! It's time to fly, Ioasys! 🚀`)
 })
