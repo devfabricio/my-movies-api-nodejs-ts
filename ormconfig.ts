@@ -9,10 +9,10 @@ export = {
   database: process.env.DB_DATABASE,
   entities: ['./src/modules/**/infra/typeorm/entities/*.ts'],
   migrations: [
-    './src/shared/database/migrations/*.ts'
+    './src/shared/config/database/migrations/*.ts'
   ],
   cli: {
-    migrationsDir: './src/shared/database/migrations'
+    migrationsDir: './src/shared/config/database/migrations'
   },
   ssl: process.env.APP_ENVIRONMENT === 'prod',
   extra: process.env.APP_ENVIRONMENT === 'prod' ? {
