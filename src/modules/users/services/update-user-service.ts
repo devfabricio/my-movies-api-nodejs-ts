@@ -1,11 +1,11 @@
-import { ApiService } from '../../../shared/protocols/api-service'
-import { HttpRequest, HttpResponse } from '../../../shared/helpers/http/protocols/http'
-import { badRequest, ok, serverError } from '../../../shared/helpers/http/http-helper'
-import { Validator } from '../../../shared/helpers/validators/protocols/validator'
-import { Encrypter } from '../../../shared/utils/adapters/protocols/encrypter'
+import { ApiService } from '../../../shared/presentation/protocols/api-service'
+import { HttpRequest, HttpResponse } from '../../../shared/presentation/helpers/http/protocols/http'
+import { badRequest, ok, serverError } from '../../../shared/presentation/helpers/http/http-helper'
+import { Validator } from '../../../shared/presentation/helpers/validators/protocols/validator'
+import { Encrypter } from '../../../shared/infra/adapters/protocols/encrypter'
 import { getRepository } from 'typeorm'
 import User from '../infra/typeorm/entities/user'
-import { MissingParamError } from '../../../shared/helpers/errors'
+import { MissingParamError } from '../../../shared/presentation/helpers/errors'
 
 export default class UpdateUserService implements ApiService {
   constructor (private readonly validators: Validator,

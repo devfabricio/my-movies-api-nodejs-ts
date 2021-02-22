@@ -21,7 +21,10 @@ export const ok = (body: any): HttpResponse => ({
   body: body
 })
 
-export const created = (body: any): HttpResponse => ({
+export const created = (modelName: string, id: string): HttpResponse => ({
   statusCode: 201,
-  body: body
+  body: {
+    id,
+    message: `${modelName} created successfully`
+  }
 })

@@ -1,6 +1,6 @@
 import { EmailValidator } from './email-validator'
-import { EmailValidationFake } from '../../utils/adapters/fakes/email-validator-fake'
-import { EmailValidation } from '../../utils/adapters/protocols/email-validation'
+import { EmailValidationFake } from '../../../infra/adapters/fakes/email-validator-fake'
+import { EmailValidation } from '../../../infra/adapters/protocols/email-validation'
 import { InvalidParamError } from '../errors'
 
 type makeSutTypes = {

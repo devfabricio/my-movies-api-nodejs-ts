@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { makeCreateUserService } from '../factories/user/make-create-user-service'
-import { ApiController } from '../../../shared/protocols/api-controller'
+import { ApiController } from '../../../shared/presentation/protocols/api-controller'
 import { makeUpdateUserService } from '../factories/user/make-update-user-service'
 
 export class UserController implements ApiController {

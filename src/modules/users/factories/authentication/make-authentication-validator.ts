@@ -1,8 +1,8 @@
 import {
   RequiredFieldValidator,
   ValidatorComposite
-} from '../../../../shared/helpers/validators'
-import { Validator } from '../../../../shared/helpers/validators/protocols/validator'
+} from '../../../../shared/presentation/helpers/validators'
+import { Validator } from '../../../../shared/presentation/helpers/validators/protocols/validator'
 
 export const makeAuthenticationValidator = (): ValidatorComposite => {
   const validators: Validator[] = []

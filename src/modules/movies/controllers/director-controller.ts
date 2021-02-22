@@ -1,4 +1,4 @@
-import { ApiController } from '../../../shared/protocols/api-controller'
+import { ApiController } from '../../../shared/presentation/protocols/api-controller'
 import { Request, Response } from 'express'
 import { makeCreateDirectorService } from '../factories/director/make-create-director-service'
 import ListDirectorService from '../services/director/list-director-service'

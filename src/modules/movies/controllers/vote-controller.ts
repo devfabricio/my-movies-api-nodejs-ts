@@ -1,4 +1,4 @@
-import { ApiController } from '../../../shared/protocols/api-controller'
+import { ApiController } from '../../../shared/presentation/protocols/api-controller'
 import { Request, Response } from 'express'
 import { makeCreateVoteService } from '../factories/vote/make-create-vote-service'
 

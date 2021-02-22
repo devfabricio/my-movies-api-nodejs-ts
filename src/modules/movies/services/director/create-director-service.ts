@@ -1,7 +1,7 @@
-import { ApiService } from '../../../../shared/protocols/api-service'
-import { HttpRequest, HttpResponse } from '../../../../shared/helpers/http/protocols/http'
-import { Validator } from '../../../../shared/helpers/validators/protocols/validator'
-import { badRequest, created, serverError } from '../../../../shared/helpers/http/http-helper'
+import { ApiService } from '../../../../shared/presentation/protocols/api-service'
+import { HttpRequest, HttpResponse } from '../../../../shared/presentation/helpers/http/protocols/http'
+import { Validator } from '../../../../shared/presentation/helpers/validators/protocols/validator'
+import { badRequest, created, serverError } from '../../../../shared/presentation/helpers/http/http-helper'
 import { getRepository } from 'typeorm'
 import Director from '../../infra/typeorm/entities/director'
 
@@ -25,7 +25,7 @@ export default class CreateDirectorService implements ApiService {
 
       await directorRepository.save(director)
 
-      return created(director)
+      return created('Director', director.id)
     } catch (error) {
       console.log(error)
       return serverError()

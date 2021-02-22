@@ -1,8 +1,8 @@
-import { ApiService } from '../../../../shared/protocols/api-service'
-import { HttpRequest, HttpResponse } from '../../../../shared/helpers/http/protocols/http'
+import { ApiService } from '../../../../shared/presentation/protocols/api-service'
+import { HttpRequest, HttpResponse } from '../../../../shared/presentation/helpers/http/protocols/http'
 import { getRepository } from 'typeorm'
 import Movie from '../../infra/typeorm/entities/movie'
-import { badRequest, ok, serverError } from '../../../../shared/helpers/http/http-helper'
+import { badRequest, ok, serverError } from '../../../../shared/presentation/helpers/http/http-helper'
 
 export default class ShowMovieService implements ApiService {
   async execute (request: HttpRequest): Promise<HttpResponse> {

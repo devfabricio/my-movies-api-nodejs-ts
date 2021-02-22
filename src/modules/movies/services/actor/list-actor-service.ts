@@ -1,7 +1,7 @@
-import { ApiService } from '../../../../shared/protocols/api-service'
-import { HttpResponse } from '../../../../shared/helpers/http/protocols/http'
+import { ApiService } from '../../../../shared/presentation/protocols/api-service'
+import { HttpResponse } from '../../../../shared/presentation/helpers/http/protocols/http'
 import { getRepository } from 'typeorm'
-import { ok, serverError } from '../../../../shared/helpers/http/http-helper'
+import { ok, serverError } from '../../../../shared/presentation/helpers/http/http-helper'
 import Actor from '../../infra/typeorm/entities/actor'
 
 export default class ListActorService implements ApiService {

@@ -1,8 +1,8 @@
-import { ApiService } from '../../../../shared/protocols/api-service'
-import { HttpResponse } from '../../../../shared/helpers/http/protocols/http'
+import { ApiService } from '../../../../shared/presentation/protocols/api-service'
+import { HttpResponse } from '../../../../shared/presentation/helpers/http/protocols/http'
 import { getRepository } from 'typeorm'
 import Genre from '../../infra/typeorm/entities/genre'
-import { ok, serverError } from '../../../../shared/helpers/http/http-helper'
+import { ok, serverError } from '../../../../shared/presentation/helpers/http/http-helper'
 
 export default class ListGenreService implements ApiService {
   async execute (): Promise<HttpResponse> {

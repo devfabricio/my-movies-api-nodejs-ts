@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { ApiController } from '../../../shared/protocols/api-controller'
+import { ApiController } from '../../../shared/presentation/protocols/api-controller'
 import { makeAuthenticationService } from '../factories/authentication/make-authentication-service'
 
 export class AuthenticationController implements ApiController {

@@ -1,8 +1,8 @@
 import { CreateUserService } from './create-user-service'
-import { Validator } from '../../../shared/helpers/validators/protocols/validator'
-import { ValidatorFake } from '../../../shared/helpers/validators/fakes/validator-fake'
-import { ValidatorComposite } from '../../../shared/helpers/validators'
-import { badRequest } from '../../../shared/helpers/http/http-helper'
+import { Validator } from '../../../shared/presentation/helpers/validators/protocols/validator'
+import { ValidatorFake } from '../../../shared/presentation/helpers/validators/fakes/validator-fake'
+import { ValidatorComposite } from '../../../shared/presentation/helpers/validators'
+import { badRequest } from '../../../shared/presentation/helpers/http/http-helper'
 
 type sutTypes = {
   sut: CreateUserService

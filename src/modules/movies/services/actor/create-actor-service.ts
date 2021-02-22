@@ -1,7 +1,7 @@
-import { ApiService } from '../../../../shared/protocols/api-service'
-import { HttpRequest, HttpResponse } from '../../../../shared/helpers/http/protocols/http'
-import { Validator } from '../../../../shared/helpers/validators/protocols/validator'
-import { badRequest, created, serverError } from '../../../../shared/helpers/http/http-helper'
+import { ApiService } from '../../../../shared/presentation/protocols/api-service'
+import { HttpRequest, HttpResponse } from '../../../../shared/presentation/helpers/http/protocols/http'
+import { Validator } from '../../../../shared/presentation/helpers/validators/protocols/validator'
+import { badRequest, created, serverError } from '../../../../shared/presentation/helpers/http/http-helper'
 import { getRepository } from 'typeorm'
 import Actor from '../../infra/typeorm/entities/actor'
 
@@ -25,7 +25,7 @@ export default class CreateActorService implements ApiService {
 
       await actorRepository.save(actor)
 
-      return created(actor)
+      return created('Actor', actor.id)
     } catch (error) {
       console.log(error)
       return serverError()

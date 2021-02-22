@@ -1,14 +1,14 @@
-import { ApiService } from '../../../../shared/protocols/api-service'
-import { HttpRequest, HttpResponse } from '../../../../shared/helpers/http/protocols/http'
-import { Validator } from '../../../../shared/helpers/validators/protocols/validator'
-import { badRequest, created, serverError, unauthorized } from '../../../../shared/helpers/http/http-helper'
+import { ApiService } from '../../../../shared/presentation/protocols/api-service'
+import { HttpRequest, HttpResponse } from '../../../../shared/presentation/helpers/http/protocols/http'
+import { Validator } from '../../../../shared/presentation/helpers/validators/protocols/validator'
+import { badRequest, created, serverError, unauthorized } from '../../../../shared/presentation/helpers/http/http-helper'
 import { getRepository } from 'typeorm'
 import Movie from '../../infra/typeorm/entities/movie'
 import Genre from '../../infra/typeorm/entities/genre'
 import Actor from '../../infra/typeorm/entities/actor'
 import Director from '../../infra/typeorm/entities/director'
 import User from '../../../users/infra/typeorm/entities/user'
-import { Roles } from '../../../../shared/protocols/api-roles'
+import { Roles } from '../../../../shared/presentation/protocols/api-roles'
 
 type MovieData = {
   title: string
@@ -76,7 +76,7 @@ export default class CreateMovieService implements ApiService {
 
       await movieRepository.save(movie)
 
-      return created(movie)
+      return created('Movie', movie.id)
     } catch (error) {
       console.log(error)
       return serverError()

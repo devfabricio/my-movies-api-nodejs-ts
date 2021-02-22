@@ -1,6 +1,6 @@
 import { verify } from 'jsonwebtoken'
 import { NextFunction, Request, Response } from 'express'
-import { UnauthorizedError } from '../helpers/errors'
+import { UnauthorizedError } from '../../presentation/helpers/errors'
 
 export const isAuth = (request: Request, response: Response, next: NextFunction): void => {
   const authHeader = request.headers.authorization

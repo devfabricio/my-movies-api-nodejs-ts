@@ -1,4 +1,4 @@
-import { ApiController } from '../../../shared/protocols/api-controller'
+import { ApiController } from '../../../shared/presentation/protocols/api-controller'
 import { Request, Response } from 'express'
 import { makeCreateMovieService } from '../factories/movie/make-create-movie-service'
 import ListMovieService from '../services/movie/list-movie-service'
