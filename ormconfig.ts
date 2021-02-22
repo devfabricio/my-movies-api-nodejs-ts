@@ -13,5 +13,11 @@ export = {
   ],
   cli: {
     migrationsDir: './src/shared/database/migrations'
+  },
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false
+    }
   }
 }
