@@ -6,7 +6,7 @@
   "author": "Fabricio Augusto <fabricio.mata@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && tsc",
+    "build": "rimraf dist && tsc && ts-node node_modules/typeorm/cli.js migration:run",
     "start": "node dist/server.js",
     "dev:start": "ts-node-dev --transpile-only  src/server.ts",
     "typeorm": "ts-node node_modules/typeorm/cli.js",
