@@ -1,8 +1,8 @@
 import express from 'express'
+import 'dotenv/config'
 import cors from 'cors'
 import './shared/config/database'
 import setupSwagger from './shared/config/swagger'
-import 'dotenv/config'
 import setupRoutes from './shared/main/routes'
 
 const app = express()
