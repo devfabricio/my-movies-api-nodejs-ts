@@ -2,15 +2,42 @@ import { docRequestBody } from '../components/doc-request-body'
 import { docResponse } from '../components/doc-response'
 
 export const moviePath = {
+  get: {
+    tags: ['Filme'],
+    summary: 'Lista de filmes cadastrados',
+    parameters: [{
+      in: 'query',
+      name: 'genre',
+      description: 'Filtrar por ID do gênero'
+    },
+    {
+      in: 'query',
+      name: 'actor',
+      description: 'Filtrar por ID do ator'
+    },
+    {
+      in: 'query',
+      name: 'director',
+      description: 'Filtrar por ID do diretor'
+    },
+    {
+      in: 'query',
+      name: 'title',
+      description: 'Buscar por título semelhante'
+    }],
+    responses: {
+      ...docResponse(200, 'Sucesso', 'listMovieResponse')
+    }
+  },
   post: {
     tags: ['Filme'],
     summary: 'Criação de Filme',
     security: [{
       bearerAuth: []
     }],
-    requestBody: docRequestBody('movieBody'),
+    requestBody: docRequestBody('createMovieRequest'),
     responses: {
-      ...docResponse(201, 'Sucesso', 'movie')
+      ...docResponse(201, 'Sucesso', 'createMovieResponse')
     }
   }
 }

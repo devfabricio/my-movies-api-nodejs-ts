@@ -1,7 +1,7 @@
 import { docResponseObjectType } from '../components/doc-response-object-type'
 
-export const idNameBodySchema = {
-  ...docResponseObjectType('object',{
+export const idNameArrayBodySchema = {
+  ...docResponseObjectType('array', {
     id: {
       type: 'string'
     },

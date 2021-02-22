@@ -1,11 +1,11 @@
 import { docResponseObjectType } from '../components/doc-response-object-type'
 
-export const idNameBodySchema = {
+export const successfulMessageSchema = {
   ...docResponseObjectType('object',{
     id: {
       type: 'string'
     },
-    name: {
+    message: {
       type: 'string'
     }
   })
