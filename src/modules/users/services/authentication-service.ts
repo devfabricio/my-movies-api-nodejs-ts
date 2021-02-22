@@ -37,6 +37,6 @@ export class AuthenticationService implements ApiService {
       expiresIn: '30d'
     })
 
-    return ok({ user, token })
+    return ok({ accessToken: token })
   }
 }
