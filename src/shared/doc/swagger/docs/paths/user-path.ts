@@ -13,6 +13,9 @@ export const userPath = {
   put: {
     tags: ['Usuário'],
     summary: 'Editar usuário',
+    security: [{
+      bearerAuth: []
+    }],
     requestBody: docRequestBody('updateUser'),
     responses: {
       ...docResponse(201, 'Sucesso', 'successfulMessage')

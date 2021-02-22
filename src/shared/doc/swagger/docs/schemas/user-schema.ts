@@ -19,6 +19,10 @@ export const createUserSchema = {
 export const updateUserSchema = {
   type: 'object',
   properties: {
+    id: {
+      type: 'string',
+      required: true
+    },
     name: {
       type: 'string'
     },

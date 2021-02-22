@@ -5,6 +5,9 @@ export const userRolePath = {
   put: {
     tags: ['Funções'],
     summary: 'Alterar função de usuário',
+    security: [{
+      bearerAuth: []
+    }],
     requestBody: docRequestBody('updateRole'),
     responses: {
       ...docResponse(201, 'Sucesso', 'successfulMessage')

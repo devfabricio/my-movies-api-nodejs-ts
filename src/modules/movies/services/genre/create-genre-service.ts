@@ -14,6 +14,7 @@ export default class CreateGenreService implements ApiService {
 
   async execute (request: HttpRequest): Promise<HttpResponse> {
     try {
+      console.log(request)
       const error = this.validators.validate(request.body)
       if (error) {
         return badRequest(error)

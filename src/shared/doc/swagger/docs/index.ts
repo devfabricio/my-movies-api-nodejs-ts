@@ -18,6 +18,7 @@ import { updateUserRoleSchema } from './schemas/user-role-schema'
 import { userRolePath } from './paths/user-role-path'
 import { updateUserActivationSchema } from './schemas/user-activation-schema'
 import { userActivationPath } from './paths/user-activation-path'
+import {nameBodySchema} from "./schemas/name-body";
 
 export default {
   openapi: '3.0.0',
@@ -86,6 +87,7 @@ export default {
     createMovieResponse: createMovieResponseSchema,
     createVote: createVoteSchema,
     successfulMessage: successfulMessageSchema,
+    nameBody: nameBodySchema,
     idNameBody: idNameBodySchema,
     idNameArrayBody: idNameArrayBodySchema
   }

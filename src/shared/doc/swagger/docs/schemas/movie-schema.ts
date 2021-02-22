@@ -65,9 +65,6 @@ export const createMovieRequestSchema = {
       items: {
         type: 'string'
       }
-    },
-    userId: {
-      type: 'string'
     }
   }
 }

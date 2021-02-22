@@ -1,14 +1,12 @@
 import { ApiService } from '../../../../shared/presentation/protocols/api-service'
 import { HttpRequest, HttpResponse } from '../../../../shared/presentation/helpers/http/protocols/http'
 import { Validator } from '../../../../shared/presentation/helpers/validators/protocols/validator'
-import { badRequest, created, serverError, unauthorized } from '../../../../shared/presentation/helpers/http/http-helper'
+import { badRequest, created, serverError } from '../../../../shared/presentation/helpers/http/http-helper'
 import { getRepository } from 'typeorm'
 import Movie from '../../infra/typeorm/entities/movie'
 import Genre from '../../infra/typeorm/entities/genre'
 import Actor from '../../infra/typeorm/entities/actor'
 import Director from '../../infra/typeorm/entities/director'
-import User from '../../../users/infra/typeorm/entities/user'
-import { Roles } from '../../../../shared/presentation/protocols/api-roles'
 
 type MovieData = {
   title: string
@@ -30,20 +28,7 @@ export default class CreateMovieService implements ApiService {
       if (error) {
         return badRequest(error)
       }
-      const { title, overview, releaseDate, posterPath, genresIds, actorsIds, directorsIds, userId } = request.body
-
-      const userRepository = getRepository(User)
-      const user = await userRepository.findOne({
-        where: { id: userId }, relations: ['role']
-      })
-
-      if (!user.role) {
-        return unauthorized()
-      }
-
-      if (user.role.name !== Roles.ADMINISTRATOR) {
-        return unauthorized()
-      }
+      const { title, overview, releaseDate, posterPath, genresIds, actorsIds, directorsIds } = request.body
 
       const movieRepository = getRepository(Movie)
       const genreRepository = getRepository(Genre)
